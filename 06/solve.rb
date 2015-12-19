@@ -18,17 +18,16 @@ def light(top_left, bottom_right, action, grid)
   if action == 'turn on '
     value = 1
   elsif action == 'turn off '
-    value = 0
-  elsif action == 'toggle '
     value = -1
+  elsif action == 'toggle '
+    value = 2
   end
 
   (x1..x2).each do |x|
     (y1..y2).each do |y|
-      if value == -1
-        grid[x][y] = 1 - grid[x][y]
-      else
-        grid[x][y] = value
+      grid[x][y] += value
+      if grid[x][y] < 0
+        grid[x][y] = 0
       end
     end
   end
@@ -40,4 +39,4 @@ f.each_line do |line|
   light([r[2], r[3]], [r[5], r[6]], r[1], grid)
 end
 
-puts grid.flatten.count(1)
+puts grid.flatten.reduce(&:+)

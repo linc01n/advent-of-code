@@ -25,6 +25,9 @@ f.each_line do |line|
   script += "\tmemoize :#{line[1]}\n"
 end
 script += "end\n"
-script += "puts A7.new.a()\n"
+
+script += "class A7b < A7\n"
+script += "\tdef b; return A7.new.a(); end\nend\n"
+script += "puts A7b.new.a()\n"
 
 eval script

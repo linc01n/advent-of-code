@@ -7,9 +7,9 @@ esc_char = 0
 f.each_line do |line|
   org = line.size - 1
   str = ""
-  eval("str = #{line}")
-  esc = str.size
-  esc_char += org - esc
+  str = line.dump
+  esc = str.size - 2
+  esc_char += esc - org
 end
 
 puts esc_char

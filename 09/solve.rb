@@ -29,4 +29,4 @@ locations.permutation(locations.length).to_a.each do |path|
   search_cost << cost
 end
 
-puts search_cost.min
+puts search_cost.max
